@@ -16,7 +16,7 @@ const io = require('socket.io')(3001, {
         methods: ["GET", "POST"],
     },
 })
-//shir
+
 // every time the client will connect to the server this func will run
 io.on("connection", socket => {
     socket.on("get-document", async documentId => {
