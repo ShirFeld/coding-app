@@ -7,12 +7,12 @@
 - <ins>Front:</ins>
   - React
   - Bootstrap
-  - quill
-    <br>
+  - Quill
+    <br><br>
 - <ins>Back:</ins>
   - Firebase
   - nodemon
-    <br>
+    <br><br>
 
 * Socket.io
 
