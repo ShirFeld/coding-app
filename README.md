@@ -2,6 +2,19 @@
 > NOTE: ALL RIGHTS RESERVED TO Shir Feldman 
 
 
+#### <ins>Using</ins>
+* Front:
+   - React
+   - Bootstrap
+  
+* Back:
+   - Firebase
+   - nodemon
+* Socket.io
+
+
+
+
 ## **1. Login page**
 
 <img  src="" title="Login Page" />
