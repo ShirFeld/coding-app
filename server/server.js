@@ -35,6 +35,7 @@ io.on("connection", socket => {
             }
         });
 
+    
         socket.join(documentId)
         socket.emit("load-document", document)
         socket.on("send-changes", delta => {
