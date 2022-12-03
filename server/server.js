@@ -1,5 +1,5 @@
 const { initializeApp, cert } = require('firebase-admin/app');
-const { getFirestore} = require('firebase-admin/firestore');
+const { getFirestore } = require('firebase-admin/firestore');
 
 
 let serviceAccount = require("./serviceAccount.json");
@@ -21,7 +21,7 @@ const io = require('socket.io')(3001, {
 io.on("connection", socket => {
     socket.on("get-document", async documentId => {
         const document = findDocument(documentId)
-        
+
         socket.join(documentId)
         socket.emit("load-document", document.code)
         socket.on("send-changes", delta => {
@@ -42,10 +42,11 @@ async function findDocument(id) {
     const usersRef = db.collection('users');
     const snapshot = await usersRef.get();
     snapshot.forEach(doc => {
-        arr.push(doc)
-        //   console.log(doc.id, '=>', doc.data());
         if (id === doc.data().courseName)
             return d.data();
+        arr.push(doc)
+        //   console.log(doc.id, '=>', doc.data());
+
     });
 
 }
