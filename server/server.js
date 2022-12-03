@@ -1,30 +1,15 @@
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore} = require('firebase-admin/firestore');
 
-let admin = require("firebase-admin");
+
 let serviceAccount = require("./serviceAccount.json");
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+initializeApp({
+    credential: cert(serviceAccount)
 });
 
+const db = getFirestore();
 
-const db = admin.firestore()
-let array_data = [];  // before the id of the users
-let customerRef = db.collection("users")
-customerRef.get().then((querySnapshot) => {
-    querySnapshot.forEach(document => {
-        array_data.push(document);
-    })
-
-})
-
-
-
-
-
-
-
-
-
-// i used core because me server ans client are in different ports.
+// i used core because my server ans client are in different ports.
 const io = require('socket.io')(3001, {
     cors: {
         origin: 'http://localhost:3000',
@@ -32,45 +17,43 @@ const io = require('socket.io')(3001, {
     },
 })
 
-
 // every time the client will connect to the server this func will run
 io.on("connection", socket => {
     socket.on("get-document", async documentId => {
         const document = findDocument(documentId)
+        
         socket.join(documentId)
         socket.emit("load-document", document.code)
         socket.on("send-changes", delta => {
             socket.broadcast.to(documentId).emit("receive-changes", delta)
         })
-
         // fix it
         socket.on("save-document", async data => {
             await func(documentId, data)
         })
     })
-
-
 })
-
-
 
 // find the id (url()) of the code in firebase
 async function findDocument(id) {
     if (id == null) return
 
-    array_data.forEach((d) => {
-        if (id === d.data().courseName) {
+    let arr = []
+    const usersRef = db.collection('users');
+    const snapshot = await usersRef.get();
+    snapshot.forEach(doc => {
+        arr.push(doc)
+        //   console.log(doc.id, '=>', doc.data());
+        if (id === doc.data().courseName)
             return d.data();
-        }
+    });
 
-    })
 }
 
 
-const func = (documentId, data) => {
+const func = async (documentId, data) => {
 
-    const washingtonRef = doc(db, "cities", documentId);
-    updateDoc(washingtonRef, {
-        code: data
-    });
+    const cityRef = db.collection('users').doc(documentId);
+    const res = await cityRef.update({ code: data });
+
 }
