@@ -20,47 +20,69 @@ const io = require('socket.io')(3001, {
 // every time the client will connect to the server this func will run
 io.on("connection", socket => {
     socket.on("get-document", async documentId => {
-        const document = findDocument(documentId)
+        let document = ""
+        let id = ""
+        // const document = findDocument(documentId)
 
-        console.log(document + " &&&&&&&&")
+        const usersRef = db.collection('users');
+        const snapshot = await usersRef.get();
+        snapshot.forEach(doc => {
+            if (documentId === doc.data().courseName) {
+                document = doc.data().code;
+                console.log(document + " &&&&")
+                id = doc.id
+                console.log(id + " !!!!!!!!!!!!!!!!!!!")
+            }
+        });
+
         socket.join(documentId)
-        socket.emit("load-document", document.code)
+        socket.emit("load-document", document)
         socket.on("send-changes", delta => {
             socket.broadcast.to(documentId).emit("receive-changes", delta)
         })
         // fix it
         socket.on("save-document", async data => {
-            await func(documentId, data)
+            // await func(documentId, data)
+
+
+            const cityRef = db.collection('users').doc(id);
+            const res = await cityRef.update({ code: data });
+
+            // await urlRef.update({ code: data });
+
+
+
         })
     })
+
 })
 
 // find the id (url()) of the code in firebase
-async function findDocument(id) {
-    if (id == null) return
+// async function findDocument(id) {
+//     if (id == null) return
 
-    const usersRef = db.collection('users');
-    const snapshot = await usersRef.get();
-    try {
-        snapshot.forEach(doc => {
-            if (id === doc.data().courseName) {
-                console.log(doc.data().courseName + " *************")
-                console.log(id + "  $$$$$$$$$$$$")
-                console.log(doc.data().code + "  $$$$$$$$$$$$")
-            }
-            return doc.data().code;
-            //   console.log(doc.id, '=>', doc.data());
+//     const usersRef = db.collection('users');
+//     const snapshot = await usersRef.get();
+//     try {
+//         snapshot.forEach(doc => {
+//             if (id === doc.data().courseName) {
+//                 console.log(doc.data().courseName + " *************")
+//                 console.log(id + "  $$$$$$$$$$$$")
+//                 console.log(doc.data().code + "  $$$$$$$$$$$$")
+//             }
+//             return doc.data().code;
+//             //   console.log(doc.id, '=>', doc.data());
 
-        });
-    } catch (error) {
-        console.error(error);
-    }
-}
+//         });
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 
-const func = async (documentId, data) => {
+// const func = async (documentId, data) => {
 
-    const cityRef = db.collection('users').doc(documentId);
-    const res = await cityRef.update({ code: data });
+//     const cityRef = db.collection('users').doc(documentId);
+//     const res = await cityRef.update({ code: data });
 
-}
+// }
