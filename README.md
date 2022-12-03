@@ -20,7 +20,7 @@
 
 <br><br>
 
-## **2. Chat-room page**
+## **3. Chat-room page**
 
 <img  src="./pics/1.PNG" title="Residents Page" />
 
