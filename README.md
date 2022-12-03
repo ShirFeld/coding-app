@@ -39,3 +39,13 @@
 ## **3. Chat-room page**
 
 <img  src="./pics/1.PNG" title="Residents Page" />
+
+<br><br><br><br>
+
+
+
+<video width="500" height="240" controls>
+  <source src="./pics/video.mp4" type="video/mp4">
+
+Your browser does not support the video tag.
+</video>
