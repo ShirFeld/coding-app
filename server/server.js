@@ -43,7 +43,8 @@ async function findDocument(id) {
     const snapshot = await usersRef.get();
     snapshot.forEach(doc => {
         if (id === doc.data().courseName)
-            return doc.data();
+            return doc.data().courseName;
+        console.log(doc.data().courseName + " *************")
         arr.push(doc)
         //   console.log(doc.id, '=>', doc.data());
 
