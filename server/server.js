@@ -22,6 +22,7 @@ io.on("connection", socket => {
     socket.on("get-document", async documentId => {
         const document = findDocument(documentId)
 
+        console.log(document + " &&&&&&&&")
         socket.join(documentId)
         socket.emit("load-document", document.code)
         socket.on("send-changes", delta => {
@@ -38,18 +39,22 @@ io.on("connection", socket => {
 async function findDocument(id) {
     if (id == null) return
 
-    let arr = []
     const usersRef = db.collection('users');
     const snapshot = await usersRef.get();
-    snapshot.forEach(doc => {
-        if (id === doc.data().courseName)
+    try {
+        snapshot.forEach(doc => {
+            if (id === doc.data().courseName) {
+                console.log(doc.data().courseName + " *************")
+                console.log(id + "  $$$$$$$$$$$$")
+                console.log(doc.data().code + "  $$$$$$$$$$$$")
+            }
             return doc.data().code;
-        console.log(doc.data().code + " *************")
-        arr.push(doc)
-        //   console.log(doc.id, '=>', doc.data());
+            //   console.log(doc.id, '=>', doc.data());
 
-    });
-
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 
