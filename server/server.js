@@ -18,9 +18,10 @@ const io = require('socket.io')(3001, {
 })
 
 // every time the client will connect to the server this func will run
+// documentId --> url
 io.on("connection", socket => {
     socket.on("get-document", async documentId => {
-        let document = ""
+        let document = "" // code
         let id = ""
         // const document = findDocument(documentId)
 
@@ -29,13 +30,13 @@ io.on("connection", socket => {
         snapshot.forEach(doc => {
             if (documentId === doc.data().courseName) {
                 document = doc.data().code;
-                console.log(document + " &&&&")
+                // console.log(document + " &&&&")
                 id = doc.id
-                console.log(id + " !!!!!!!!!!!!!!!!!!!")
+                // console.log(id + " !!!!!!!!!!!!!!!!!!!")
             }
         });
 
-    
+
         socket.join(documentId)
         socket.emit("load-document", document)
         socket.on("send-changes", delta => {
