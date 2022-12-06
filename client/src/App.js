@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, HashRouter } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
 
 
@@ -12,7 +12,7 @@ import TextEditor from './components/TextEditor';
 function App() {
   return (
     <div className="app">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/lobby" element={<Lobby />} />
@@ -23,7 +23,7 @@ function App() {
             element={<TextEditor />}
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

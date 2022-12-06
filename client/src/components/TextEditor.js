@@ -42,7 +42,7 @@ export default function TextEditor() {
     // the connection to the server
     useEffect(() => {
         // const s = io(process.env.REACT_APP_SERVER_URL)
-        const s = io("http://localhost:3001")
+        const s = io(process.env.REACT_APP_SERVER_URL)
         setSocket(s);
 
         return () => {
