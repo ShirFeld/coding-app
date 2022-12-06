@@ -1,6 +1,7 @@
 const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
 
+const PORT = process.env.PORT || 3030;
 
 let serviceAccount = require("./serviceAccount.json");
 initializeApp({
@@ -12,10 +13,17 @@ const db = getFirestore();
 // i used core because my server ans client are in different ports.
 const io = require('socket.io')(3001, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: PORT,
         methods: ["GET", "POST"],
     },
 })
+
+// const io = require('socket.io')(process.env.CLIENT_URL, {
+//     cors: {
+//         origin: process.env.CLIENT_URL,
+//         methods: ["GET", "POST"],
+//     },
+// })
 
 // every time the client will connect to the server this func will run
 io.on("connection", socket => {

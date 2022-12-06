@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 
 export default function TextEditor() {
+    
     const SAVE_INTERVAL_MS = 2000
     const { id: documentId } = useParams() // the id from the url
     const [socket, setSocket] = useState()
@@ -40,6 +41,7 @@ export default function TextEditor() {
 
     // the connection to the server
     useEffect(() => {
+        // const s = io(process.env.REACT_APP_SERVER_URL)
         const s = io("http://localhost:3001")
         setSocket(s);
 
