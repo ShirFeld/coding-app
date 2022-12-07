@@ -38,7 +38,7 @@ https://client-code.onrender.com
 
 <br><br>
 
-## **3. Chat-room page**
+## **3. Chat-room page (on live)**
 
 <img  src="./coding-app/pics/1.PNG" title="Residents Page" />
 
