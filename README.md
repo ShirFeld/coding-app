@@ -1,8 +1,8 @@
 # Coding App
 
-> NOTE: ALL RIGHTS RESERVED TO Shir Feldman
+> This site gives the option of sharing code live with several participants in the room.
 
- https://client-code.onrender.com  
+https://client-code.onrender.com
 
 #### <ins>Using</ins>
 
@@ -30,7 +30,6 @@
 
 <img  src="./coding-app/pics/2.PNG" title="Residents Page" />
 
-
 <br><br>
 
 ## **2. Student list page**
@@ -45,3 +44,4 @@
 
 <br><br><br><br>
 
+> NOTE: ALL RIGHTS RESERVED TO Shir Feldman
