@@ -8,11 +8,22 @@ import { useParams } from "react-router-dom";
 
 
 export default function TextEditor() {
-    
     const SAVE_INTERVAL_MS = 2000
     const { id: documentId } = useParams() // the id from the url
     const [socket, setSocket] = useState()
     const [quill, setQuill] = useState()
+
+
+    // the connection to the server
+    useEffect(() => {
+        const s = io("https://server-ug1g.onrender.com")
+        setSocket(s);
+
+        return () => {
+            s.disconnect()
+        }
+    }, [])
+
 
 
 
@@ -39,19 +50,8 @@ export default function TextEditor() {
 
     ]
 
-    // the connection to the server
-    useEffect(() => {
-        // const s = io(process.env.REACT_APP_SERVER_URL)
-        const s = io(process.env.REACT_APP_SERVER_URL)
-        setSocket(s);
-
-        return () => {
-            s.disconnect()
-        }
-    }, [])
 
 
-    // shir
 
     useEffect(() => {
         if (socket == null || quill == null) return
