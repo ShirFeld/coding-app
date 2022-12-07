@@ -51,23 +51,36 @@ function Login() {
     return (
         <div className="login">
             <div className="login__container">
-                <input
-                    type="text"
-                    className="login__textBox"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email Address"
-                />
-                <input
-                    type="password"
-                    className="login__textBox"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                />
-                <button
-                    className="login__btn" onClick={() => logInWithEmailAndPassword(email, password)}>  Login  </button>
-                {/* className="login__btn" onClick={() => onLogin()}>  Login  </button> */}
+                <div >
+                    <h1 style={{ "backgroundColor": "white" }}>
+                        Login page
+                    </h1>
+                </div>
+
+                <div className="login__textBox">
+                    <input
+                        type="text"
+                        className="name"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email Address"
+                    />
+                </div>
+                <div className="login__textBox">
+                    <input
+                        type="password"
+                        className="name"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                    />
+
+                </div>
+                <div className="login__textBox">
+                    <button
+                        className="login__btn" onClick={() => logInWithEmailAndPassword(email, password)}>  Login  </button>
+                    {/* className="login__btn" onClick={() => onLogin()}>  Login  </button> */}
+                </div>
 
             </div>
         </div>

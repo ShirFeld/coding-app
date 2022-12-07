@@ -4,27 +4,54 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgb(34, 195, 120);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(34, 195, 120, 0.7094188017003676) 0%,
+    rgba(79, 165, 170, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(34, 195, 120, 0.7094188017003676) 0%,
+    rgba(79, 165, 170, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(34, 195, 120, 0.7094188017003676) 0%,
+    rgba(79, 165, 170, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#22c378",endColorstr="#4fa5aa",GradientType=1);
 }
 .login__container {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #dcdcdc;
+  background-color: #fffefe;
   padding: 30px;
+  height: 350px;
+  width: 25%;
+  padding-top: 30px;
+  border-radius: 60px;
+  background-color: white;
 }
 .login__textBox {
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
+  margin-top: 30px;
 }
 .login__btn {
   padding: 10px;
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 10px;
-  border: none;
+  border-radius: 8px;
   color: white;
   background-color: black;
 }
 .login div {
   margin-top: 7px;
+}
+
+.name {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
