@@ -26,7 +26,7 @@
 
 <br><br>
 
-## **2. Course list page**
+## **2. Choose a room with a student**
 
 <img  src="./coding-app/pics/2.PNG" title="Residents Page" />
 
@@ -34,7 +34,7 @@
 
 ## **2. Student list page**
 
-<img  src="./coding-app/pics/3.PNG" title="Residents Page" />
+<img  src="./coding-app/pics/list.PNG" title="Residents Page" />
 
 <br><br>
 
